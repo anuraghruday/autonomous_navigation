@@ -46,7 +46,7 @@ The **Grand Prix Autonomous Racing Project** demonstrates how to build an autono
 ## Installation
 Ensure ROS-Noetic is installed. Follow these steps to set up the project:
 
-bash
+```bash
 # Update package lists
 sudo apt-get update
 
@@ -62,8 +62,7 @@ cd ~/catkin_ws
 
 # Build the workspace
 catkin_make
-
-
+```
 ---
 
 ## Usage
