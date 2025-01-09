@@ -17,7 +17,7 @@ Developed an autonomous navigation system using SLAM for LiDAR-based localizatio
 ---
 
 ## Introduction
-The **Grand Prix Autonomous Racing Project** demonstrates how to build an autonomous racing system that combines advanced robotics algorithms. It uses ROS-Noetic to handle localization, planning, control, and mapping. This project focuses on navigating a race track autonomously with high accuracy and efficiency.
+The **Grand Prix Autonomous Racing Project** demonstrates how to build an autonomous racing system that combines advanced robotics algorithms. It uses ROS-Noetic to handle localization, planning, control, and (optionally) mapping. This project focuses on navigating a race track autonomously with high accuracy and efficiency.
 
 ---
 
@@ -63,54 +63,55 @@ cd ~/catkin_ws
 # Build the workspace
 catkin_make
 ```
+
 ---
 
 ## Usage
 ### Step 1: Start the ROS Master
-bash
+```bash
 roscore
-
+```
 
 ### Step 2: Launch the Localization Node
-bash
+```bash
 roslaunch grand_prix_racing localization.launch
-
+```
 
 ### Step 3: Launch the Planning and Control Node
-bash
+```bash
 roslaunch grand_prix_racing planning_control.launch
-
+```
 
 ### Step 4 (Optional): Launch the Mapping Node
-bash
+```bash
 roslaunch grand_prix_racing mapping.launch
-
+```
 
 ---
 
 ## Configuration
-Modify configuration files in the config directory to suit your environment:
+Modify configuration files in the `config` directory to suit your environment:
 
-- **Localization**: laser_scan_matcher_params.yaml, amcl_params.yaml
-- **Planning and Control**: gap_follow_params.yaml, rrt_params.yaml, a_star_params.yaml, pure_pursuit_params.yaml
-- **Mapping**: hector_slam_params.yaml
+- **Localization**: `laser_scan_matcher_params.yaml`, `amcl_params.yaml`
+- **Planning and Control**: `gap_follow_params.yaml`, `rrt_params.yaml`, `a_star_params.yaml`, `pure_pursuit_params.yaml`
+- **Mapping**: `hector_slam_params.yaml`
 
 Example YAML snippet for AMCL:
-yaml
+```yaml
 max_particles: 500
 min_particles: 100
 kld_err: 0.05
 update_min_a: 0.2
-
+```
 
 ---
 
 ## Testing
 ### Simulation
 Run tests in a ROS-compatible simulation environment (e.g., Gazebo). Example command:
-bash
+```bash
 roslaunch grand_prix_racing simulation.launch
-
+```
 
 ### Real-World Deployment
 Test the system on an actual vehicle on a track, ensuring proper calibration of sensors and controllers.
@@ -123,10 +124,9 @@ Test the system on an actual vehicle on a track, ensuring proper calibration of 
 ---
 
 ## Contributors
-- **Your Name** ([GitHub Profile](https://github.com/anuraghruday))
+- **Anurag Hruday** ([GitHub Profile](https://github.com/anuraghruday))
 
 ---
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
