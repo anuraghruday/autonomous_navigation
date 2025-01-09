@@ -1,0 +1,53 @@
+<launch>
+
+    <arg name= "car_name" default="anuraghr_racer"/>
+
+    <rosparam file="$(find anuraghr_racer)/config/params.yaml" command="load"/>
+   
+    <arg name="scan_topic" default="/$(arg car_name)/amcl/scan"/>
+    <arg name="imu_topic" default="/$(arg car_name)/amcl/imu"/>
+    <arg name="pose_topic" default="/$(arg car_name)/amcl/base_link"/>
+    <!-- <param name="param_name" value="$(arg my_param)"/> -->
+
+    <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node" output="screen">
+        <remap from="/scan" to="$(arg scan_topic)"/>
+        <remap from="/imu/data" to="$(arg imu_topic)"/>
+        <remap from="/pose2D" to="$(arg pose_topic)"/>
+
+        <param name="base_frame" type="string" value="/$(arg car_name)/amcl/base_link"/>
+        <param name="fixed_frame" type="string" value="/$(arg car_name)/amcl/odom"/>
+    
+        <param name="use_odom" type="bool" value="false"/>
+        <param name="use_imu" type="bool" value="true"/>
+        <!-- <param name="max_iterations" value="100"/> -->
+
+        <!-- <rosparam file="$(find $(arg car_name))/config/params.yaml" command="load"/> -->
+        
+    </node>
+    
+
+    <node pkg="amcl" type="amcl" name="amcl" output="screen">
+        <remap from="/scan" to="/$(arg car_name)/amcl/scan"/>
+        <remap from="/amcl_pose" to="/$(arg car_name)/amcl/pose"/>
+
+        <param name="base_frame_id" value="/$(arg car_name)/amcl/base_link"/>
+        <param name="odom_frame_id" value="/$(arg car_name)/amcl/odom"/>
+        <param name="use_map_topic" value="true"/>
+        <param name="first_map_only" value="true"/>
+        <param name="tf_broadcast" value="true"/>
+        <param name="min_particles" value="100"/>
+        <param name="max_particles" value="500"/>
+        <param name="global_frame_id" value="map"/>
+        <param name="global_localization" type="bool" value="true"/>
+        <!-- <rosparam file="$(find anuraghr_racer)/config/params.yaml" command="load"/> -->
+    </node>
+
+    <node pkg="rosservice" type="rosservice" name="call_service" output="screen" args="call /global_localization {}"/>
+
+    <!-- <node pkg="anuraghr_racer" type="gap_follower.py" name="gapfollow" output = "screen"/> -->
+    <node pkg="anuraghr_racer" type="task1b.py" name="pa51b" output = "screen"/>
+    
+    
+
+</launch>
+
