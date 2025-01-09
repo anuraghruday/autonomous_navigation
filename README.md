@@ -1,5 +1,5 @@
 # autonomous_navigation
-Developed an autonomous navigation system using SLAM for LiDAR-based localization, integrating Visual Odometry, Sensor fusion and calibration, Particle filters, and RRT path planning, achieving 92% localization accuracy.
+The Grand Prix Autonomous Racing Project is a robotics-based system that uses ROS-Noetic to enable an autonomous vehicle to navigate a race track. It combines localization, path planning, and control algorithms to ensure efficient, obstacle-free navigation. It includes AMCL-based localization, reactive (Gap Follow/RRT) and global (A*/Pure Pursuit) path planning, and mapping using Hector SLAM for enhanced navigation.
 
 # Grand Prix Autonomous Racing Project
 
